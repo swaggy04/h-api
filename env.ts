@@ -1,14 +1,22 @@
-import { env as loadEnv } from "custom-env";
+import dotenv from "dotenv";
 import { z } from "zod";
 
-process.env.APP_STAGE = process.env.APP_STAGE || "dev";
+const APP_STAGE = process.env.APP_STAGE || "dev";
 
-const isProduction = process.env.APP_STAGE === "production";
-const isDevelopment = process.env.APP_STAGE === "dev";
-const isTest = process.env.APP_STAGE === "test";
+const isProduction = APP_STAGE === "production";
+const isDevelopment = APP_STAGE === "dev";
+const isTest = APP_STAGE === "test";
 
 if (isDevelopment) {
-  loadEnv();
+  dotenv.config({
+    path: ".env",
+  });
 } else if (isTest) {
-  loadEnv("test");
+  dotenv.config({
+    path: ".env.test",
+  });
+} else if (isProduction) {
+  dotenv.config({
+    path: ".env.production",
+  });
 }
