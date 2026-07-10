@@ -5,3 +5,23 @@ const router = Router()
 router.get('/',(req,res)=>{
     res.json("message:all users")
 })
+router.get('/:id',(req,res)=>{
+    res.json({message:"one user"})
+
+})
+
+router.post('/',(req,res)=>{
+    res.json({message:"user created"})
+
+})
+router.put('/:id',(req,res)=>{
+    res.json({message:"user updated"})
+
+})
+
+router.delete('/:id',(req,res)=>{
+    res.json({message:"user deleted"})
+
+})
+
+export default router
