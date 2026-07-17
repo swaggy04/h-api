@@ -5,14 +5,16 @@ import habitRoutes from './routes/habitRouts'
 import morgan from 'morgan'
 import cors from 'cors'
 import helmet from 'helmet'
-import {isTesting} from '../env'
+import {isTesting} from './env'
 
 
 const app = express()
 app.use(cors())
 app.use(helmet())
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 app.use(morgan('dev',{
-    skip:()=> isTesting()
+    skip:() => isTesting()
 }))
 
 app.get('/health',(req,res)=>{
