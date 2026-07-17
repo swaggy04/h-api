@@ -1,7 +1,13 @@
 import {Router} from 'express'
+import { validationBody } from '../middlewares/validation'
+import {z} from 'zod/v3'
+
+const createHabitschema=z.object({
+    name:z.string()
+ })
 
 const router = Router()
-
+ 
 
 router.get('/',(req,res)=>{
     res.json({message:"habits"})
@@ -13,7 +19,7 @@ router.get('/:id',(req,res)=>{
 
 })
 
-router.post('/',(req,res)=>{
+router.post('/',validationBody(createHabitschema),(req,res)=>{
     res.json({message:"habits created"})
 
 })

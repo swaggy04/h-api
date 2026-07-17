@@ -5,7 +5,7 @@ import habitRoutes from './routes/habitRouts'
 import morgan from 'morgan'
 import cors from 'cors'
 import helmet from 'helmet'
-import {isTesting} from './env'
+import {isTesting} from '../env'
 
 
 const app = express()
